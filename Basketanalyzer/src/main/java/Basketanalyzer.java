@@ -30,7 +30,7 @@ public class Basketanalyzer {
 
 
         String fileName = args[0];//Passing string arguments for File Path
-      //  String fileName = "C:\\EDrive\\Studies\\Java\\basket 1.csv";
+        //String fileName = "C:\\EDrive\\Studies\\Java\\basket 1.csv";
         List<FruitEntry> fruits = new ArrayList<>();
 
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(fileName))) {
@@ -55,18 +55,18 @@ public class Basketanalyzer {
         // 1. Total number of fruit by same name grouping with different shape and color too present , only name is unique
         Map<String, Long> fruitCountstotal = fruits.stream()
                 .collect(Collectors.groupingBy(f -> f.name, Collectors.summingLong(f ->f.size)));
-       // int totalFruits1 = fruits.add(fruits.entrySet().stream().count());
+        // int totalFruits1 = fruits.add(fruits.entrySet().stream().count());
 
 
         // 1. Total number of fruits by same name with unique shape and color, if color or shape changed then it will not count
-       Long totalFruits =fruits.stream().count();
+        Long totalFruits =fruits.stream().count();
 
         Long totalofAllFruitsintheBasket = fruits.stream()
                 .collect(Collectors.summingLong(f -> f.size));
 
 
 
-        // 2. Total types of fruits grouping by name only
+
         Map<String, Long> fruitCounts = fruits.stream()
                 .collect(Collectors.groupingBy(f -> f.name, Collectors.counting()));
 
@@ -91,13 +91,12 @@ public class Basketanalyzer {
 
         System.out.println("Total Collection of fruit by same unique name only, with different shape or color might present: " + fruitCountstotal);
         System.out.println("Total number of All fruits in the collection by same name,but different color and different Shape(eg:Apple with Red as 1 and Apple with Orange color as 2,.. : " + totalFruits);
-        System.out.println("Types of fruit: " + fruitCounts.size());
         System.out.println("Total of All Fruits in the Basket irrespective of name,color,size and Shape= " + totalofAllFruitsintheBasket);
         System.out.println("The number of each type of fruit in descending order:");
         for (Map.Entry<String, Long> entry : sortedCounts) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
 
-          }
+        }
 
         System.out.println("The characteristics (size, color, shape, etc.) of each fruit by type:");
         for (Map.Entry<String, List<String>> entry : characteristics.entrySet()) {
@@ -114,3 +113,4 @@ public class Basketanalyzer {
         }
     }
 }
+
